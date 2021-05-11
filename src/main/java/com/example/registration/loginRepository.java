@@ -7,8 +7,8 @@ import java.util.List;
 
 @Repository
 public interface loginRepository extends JpaRepository<Register,Integer> {
-    List<Register> findByFirstName(String name);
-    List<Register> findAll();
+   // List<Register> findByFirstName(String name);
+    //List<Register> findAll();
    // List<RegisterTable> findByLastName(String lastName);
 
 }
