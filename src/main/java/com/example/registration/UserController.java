@@ -49,6 +49,12 @@ public class UserController {
         return  new User(register.getName(),register.getEmail(),register.getCountry(),register.getUid() );
 
     }
+    @DeleteMapping(path="/delete/{id}")
+    public void deleteUser(@PathVariable long id)
+    {
+        repo.deleteById(id);
+    }
+
 
 
 }
