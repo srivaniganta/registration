@@ -14,7 +14,7 @@ public class Register implements Serializable {
     private static final long serialVersionUID = -2343243243242432341L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     @Column(name="name")
     private String name;
     @Column(name="email")

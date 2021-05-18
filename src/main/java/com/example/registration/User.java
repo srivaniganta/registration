@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class User {
-    private int id;
+    public int id;
     private String name;
     private String email;
     private String phoneNo;
@@ -18,4 +19,11 @@ public class User {
     private String country;
     private String uid;
     private String password;
+
+    public User(String name, String email,  String country, String uid) {
+        this.name = name;
+        this.email = email;
+        this.country = country;
+        this.uid = uid;
+    }
 }

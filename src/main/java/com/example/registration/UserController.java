@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/r1")
@@ -40,5 +41,14 @@ public class UserController {
          List<Register> regList=repo.findAll();
         return  regList;
     }
+
+    @GetMapping(path= "/singleUser/{id}")
+    public User userById(@PathVariable long id)
+    {
+       Register register=repo.getOne(id);
+        return  new User(register.getName(),register.getEmail(),register.getCountry(),register.getUid() );
+
+    }
+
 
 }
