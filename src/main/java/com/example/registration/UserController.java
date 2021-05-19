@@ -12,47 +12,32 @@ import java.util.Optional;
 @RequestMapping("/r1")
 public class UserController {
     @Autowired
-    loginRepository repo;
+    UserServiceImpl service;
 
 @PostMapping("/save")
     public Register saveUser(@RequestBody User usr)
     {
-        Register register=new Register();
-        register.setName(usr.getName());
-        register.setEmail(usr.getEmail());
-        register.setPhoneNo(usr.getPhoneNo());
-        register.setAddress(usr.getAddress());
-        register.setCountry(usr.getCountry());
-        register.setUid(usr.getUid());
+        return  service.saveUser(usr);
 
-        Base64.Encoder encoder = Base64.getEncoder();
-        String normalString = usr.getPassword();
-        String encodedString = encoder.encodeToString(
-                normalString.getBytes(StandardCharsets.UTF_8) );
-
-        register.setPassword(encodedString);
-
-
-        return repo.save(register);
     }
         @GetMapping("/list")
     public List<Register> userList()
     {
-         List<Register> regList=repo.findAll();
-        return  regList;
+
+        return  service.userList();
     }
 
     @GetMapping(path= "/singleUser/{id}")
     public User userById(@PathVariable long id)
     {
-       Register register=repo.getOne(id);
-        return  new User(register.getName(),register.getEmail(),register.getCountry(),register.getUid() );
-
+         return  service.userById(id);
     }
+
     @DeleteMapping(path="/delete/{id}")
     public void deleteUser(@PathVariable long id)
     {
-        repo.deleteById(id);
+
+       service.deleteUser(id);
     }
 
 
