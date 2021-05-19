@@ -2,6 +2,7 @@ package com.example.registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl  implements UserService{
     @Autowired
     loginRepository repo;
-    public Register saveUser(User usr)
+    @Transactional
+    public String saveUser(User usr)
     {
         Register register=new Register();
         register.setName(usr.getName());
@@ -32,7 +36,17 @@ public class UserServiceImpl  implements UserService{
         register.setPassword(encodedString);
 
 
-        return repo.save(register);
+         repo.save(register);
+        if(register.getId()==15)
+         {
+             int a=10/2;
+             System.out.println("The value  of a is"+a);
+         }
+        if(register!=null)
+        {
+            System.out.println("Record inserted Successfully");
+        }
+         return "Record is not inserted in database";
     }
 
     public List<Register> userList()

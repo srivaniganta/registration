@@ -15,9 +15,10 @@ public class UserController {
     UserServiceImpl service;
 
 @PostMapping("/save")
-    public Register saveUser(@RequestBody User usr)
+    public String saveUser(@RequestBody User usr)
     {
-        return  service.saveUser(usr);
+          service.saveUser(usr);
+          return "Success";
 
     }
         @GetMapping("/list")
