@@ -1,6 +1,8 @@
 package com.example.registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
@@ -41,6 +43,11 @@ public class UserController {
        service.deleteUser(id);
     }
 
+    @GetMapping("/listPageable")
+    Page<Register> pagination(Pageable pageable) {
 
+        return service.employeesPageable(pageable);
+
+    }
 
 }
