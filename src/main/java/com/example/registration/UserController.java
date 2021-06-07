@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -24,10 +25,15 @@ public class UserController {
 
     }
         @GetMapping("/list")
-    public List<Register> userList()
+    public List<RegisterDTO> userList()
     {
+        List<RegisterDTO> registerDTOS = new ArrayList<RegisterDTO>() ;
 
-        return  service.userList();
+      List<Register> registerList=  service.userList();
+        for (Register register: registerList) {
+            registerDTOS.add(new RegisterDTO(register.getName(), register.getEmail(),register.getPhoneNo(),register.getAddress(),register.getCountry(), register.getUid(),register.getPassword()));
+        }
+        return  registerDTOS;
     }
 
     @GetMapping(path= "/singleUser/{id}")

@@ -16,6 +16,9 @@ import java.util.Optional;
 public class UserServiceImpl  implements UserService{
     @Autowired
     loginRepository repo;
+    @Autowired
+    GradeRepository gradeRepository;
+
     @Transactional
     public String saveUser(User usr)
     {
@@ -36,11 +39,18 @@ public class UserServiceImpl  implements UserService{
 
 
          repo.save(register);
+         Grade grade =new Grade();
+         grade.setStudentName(usr.getName());
+        grade.setTeacherName(usr.getTeacher_name());
+        grade.setPhoneNo(usr.getPhone_no());
+        grade.setGradeLevel(usr.getGrade_level());
+        gradeRepository.save(grade);
         if(register.getId()==30)
          {
              int a=10/2;
              System.out.println("The value  of a is"+a);
          }
+
         if(register!=null)
         {
             System.out.println("Record inserted Successfully");

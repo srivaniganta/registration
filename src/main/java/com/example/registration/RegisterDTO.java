@@ -7,11 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-
-public class User {
-    public int id;
+@NoArgsConstructor
+public class RegisterDTO {
     private String name;
     private String email;
     private String phoneNo;
@@ -19,14 +17,5 @@ public class User {
     private String country;
     private String uid;
     private String password;
-    private String grade_level;
-    private String phone_no;
-    private String teacher_name;
 
-    public User(String name, String email,  String country, String uid) {
-        this.name = name;
-        this.email = email;
-        this.country = country;
-        this.uid = uid;
-    }
 }
